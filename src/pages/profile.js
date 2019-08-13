@@ -5,6 +5,14 @@ import { faHome, faBriefcase, faSchool, faLaptopCode } from '@fortawesome/free-s
 
 export default function Profile(props) {
 
+    const [border, setCount] = React.useState('5px 0px 5px 5px');
+    const [shadow, setShadow] = React.useState('none');
+
+    const handleClick = () =>{
+        setShadow('0 0 0 black')
+        setCount('10px 10px 10px 10px')
+    }
+
     const styles = {
         page:{
             width: '100vw',
@@ -18,16 +26,25 @@ export default function Profile(props) {
             borderBottom: '1px black solid'
         },
         home:{
-            border: '1px white solid'
-        },
-        education:{
-            border: '1px white solid'
+            borderColor: 'white',
+            borderStyle: 'solid',
+            borderWidth: border,
+            shadow: shadow
         },
         work:{
-            border: '1px white solid'
+            borderColor: 'white',
+            borderStyle: 'solid',
+            borderWidth: '0px 5px 5px 5px'
         },
         passions:{
-            border: '1px white solid'
+            borderColor: 'white',
+            borderStyle: 'solid',
+            borderWidth: '5px 5px 5px 5px'
+        },
+        education:{
+            borderColor: 'white',
+            borderStyle: 'solid',
+            borderWidth: '0px 5px 5px 0px'
         },
         avatar: {
             borderRadius: '50%',
@@ -37,7 +54,8 @@ export default function Profile(props) {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            boxShadow: '0px 2px 4px #333'
+            padding: '0px',
+            border: '5px white solid'
         },
         homeIcon: {
             color: 'white',
@@ -76,15 +94,15 @@ export default function Profile(props) {
     return(
         <div style={styles.page}>
             <div className="row" style={styles.row}>
-                <div className="column" style={styles.home}>
+                <div className="column" style={styles.home} onClick={() => handleClick()}>
                 </div>
-                <div className="column" style={styles.education}>
+                <div className="column" style={styles.work}>
                 </div>
             </div>
             <div className="row" style={styles.row}>
-                <div className="column" style={styles.work}>
-                </div>
                 <div className="column" style={styles.passions}>
+                </div>
+                <div className="column" style={styles.education}>
                 </div>
             </div>
             <img alt="profile" src={profilePic} style={styles.avatar}/>

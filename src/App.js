@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Profile from './pages/profile';
+import Projects from './pages/projects';
 import './App.css'
 
 
@@ -10,7 +11,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Profile}/>
         <Route exact path="/profile" component={Profile}/>
-        <Route exact path="/projects"  component={Profile}/>
+        <Route exact path="/projects"  component={Projects}/>
         <Route exact path="/signup" component={Profile}/>
       </Switch>
     </div>
