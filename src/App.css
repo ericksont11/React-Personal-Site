@@ -1,0 +1,10 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.column {
+  flex-basis: 100%;
+}
