@@ -5,12 +5,12 @@ import { faHome, faBriefcase, faSchool, faLaptopCode } from '@fortawesome/free-s
 
 export default function Profile(props) {
 
-    const [border, setCount] = React.useState('5px 0px 5px 5px');
-    const [shadow, setShadow] = React.useState('none');
+    const [visibility, setVisibility] = React.useState('visible');
+    const [text, setText] = React.useState('These are my hobbies');
 
-    const handleClick = () =>{
-        setShadow('0 0 0 black')
-        setCount('10px 10px 10px 10px')
+    const handleHome = () => {
+        setVisibility('hidden')
+        setText('I like to spend my free time hiking, camping, spending time with my dog Ronnie, trying new food, etc.')
     }
 
     const styles = {
@@ -25,26 +25,15 @@ export default function Profile(props) {
             backgroundColor: '#6690B2',
             borderBottom: '1px black solid'
         },
-        home:{
+        div:{
             borderColor: 'white',
             borderStyle: 'solid',
-            borderWidth: border,
-            shadow: shadow
-        },
-        work:{
-            borderColor: 'white',
-            borderStyle: 'solid',
-            borderWidth: '0px 5px 5px 5px'
-        },
-        passions:{
-            borderColor: 'white',
-            borderStyle: 'solid',
-            borderWidth: '5px 5px 5px 5px'
-        },
-        education:{
-            borderColor: 'white',
-            borderStyle: 'solid',
-            borderWidth: '0px 5px 5px 0px'
+            borderWidth: '2.5px',
+            boxShadow: '0 1px 2px black; 0 -1px 1px #666 inset; 0 -1px 1px rgba(0,0,0,0.5); inset 0 1px 1px rgba(255,255,255,0.8)',
+            textAlign: 'center',
+            color: 'white',
+            fontSize: '10vh',
+            paddingTop: '30vh'
         },
         avatar: {
             borderRadius: '50%',
@@ -55,7 +44,26 @@ export default function Profile(props) {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             padding: '0px',
-            border: '5px white solid'
+            border: '5px white solid',
+            backgroundColor: '#6690B2',
+            visibility: visibility
+        },
+        centerDiv: {
+            borderRadius: '50%',
+            height: '50vh',
+            width: '50vh',
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            padding: '0px',
+            border: '5px white solid',
+            backgroundColor: '#6690B2',
+            textAlign: 'center',
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            overflow: 'hidden'
         },
         homeIcon: {
             color: 'white',
@@ -63,7 +71,7 @@ export default function Profile(props) {
             position: 'fixed',
             left: '25%',
             transform: 'translate(-50%, -50%)',
-            top: '25%'
+            top: '20%'
         },
         workIcon: {
             color: 'white',
@@ -71,7 +79,7 @@ export default function Profile(props) {
             position: 'fixed',
             left: '75%',
             transform: 'translate(-50%, -50%)',
-            top: '25%'
+            top: '20%'
         },
         educationIcon: {
             color: 'white',
@@ -79,7 +87,7 @@ export default function Profile(props) {
             position: 'fixed',
             left: '75%',
             transform: 'translate(-50%, -50%)',
-            top: '75%'
+            top: '70%'
         },
         passionsIcon: {
             color: 'white',
@@ -87,26 +95,33 @@ export default function Profile(props) {
             position: 'fixed',
             left: '25%',
             transform: 'translate(-50%, -50%)',
-            top: '75%'
+            top: '70%'
         }
     }
 
     return(
         <div style={styles.page}>
             <div className="row" style={styles.row}>
-                <div className="column" style={styles.home} onClick={() => handleClick()}>
+                <div className="column" style={styles.div} onMouseOver={()=> handleHome()} onMouseLeave={()=> setVisibility('visible')}>
+                    About Me
                 </div>
-                <div className="column" style={styles.work}>
+                <div className="column" style={styles.div}>
+                    Projects
                 </div>
             </div>
             <div className="row" style={styles.row}>
-                <div className="column" style={styles.passions}>
+                <div className="column" style={styles.div}>
+                    Coding Skills
                 </div>
-                <div className="column" style={styles.education}>
+                <div className="column" style={styles.div}>
+                    Education
                 </div>
             </div>
-            <img alt="profile" src={profilePic} style={styles.avatar}/>
-            <FontAwesomeIcon icon={faHome} style={styles.homeIcon} />
+            <div style={styles.centerDiv}>
+                {text}
+            </div>
+            <img alt='profile' src={profilePic} style={styles.avatar}/>
+            <FontAwesomeIcon icon={faHome} style={styles.homeIcon} onMouseOver={()=> handleHome()} onMouseLeave={()=> setVisibility('visible')}/>
             <FontAwesomeIcon icon={faLaptopCode} style={styles.workIcon} />
             <FontAwesomeIcon icon={faSchool} style={styles.educationIcon} />
             <FontAwesomeIcon icon={faBriefcase} style={styles.passionsIcon} />
