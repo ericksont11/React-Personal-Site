@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import profilePic from '../assets/tom.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faBriefcase, faSchool, faLaptopCode } from '@fortawesome/free-solid-svg-icons'
@@ -13,27 +13,40 @@ export default function Profile(props) {
         setText('I like to spend my free time hiking, camping, spending time with my dog Ronnie, trying new food, etc.')
     }
 
+    function chg(element) {
+        document.getElementById('coding').style.visibility = 'hidden';
+        document.getElementById('education').style.visibility = 'hidden';
+        document.getElementById('projects').style.visibility = 'hidden';
+        for(let i=50; i <  101; i++){
+            let time = 50*(i-50)
+            setTimeout(()=>{
+                document.getElementById(element).style.width = ''+i+'vw';
+                document.getElementById(element).style.height = ''+i+'vh';
+            },time)
+        }
+    }
+      
+
     const styles = {
         page:{
             width: '100vw',
-            height: '100vh',
+            height: '99vh',
             margin: 0,
             padding: 0,
             display: 'flex'
         },
         row:{
-            backgroundColor: '#6690B2',
+            backgroundColor: '#2a547f',
             borderBottom: '1px black solid'
         },
         div:{
             borderColor: 'white',
             borderStyle: 'solid',
-            borderWidth: '2.5px',
+            borderWidth: '.25vw',
             boxShadow: '0 1px 2px black; 0 -1px 1px #666 inset; 0 -1px 1px rgba(0,0,0,0.5); inset 0 1px 1px rgba(255,255,255,0.8)',
             textAlign: 'center',
             color: 'white',
             fontSize: '10vh',
-            paddingTop: '30vh'
         },
         avatar: {
             borderRadius: '50%',
@@ -101,19 +114,19 @@ export default function Profile(props) {
 
     return(
         <div style={styles.page}>
-            <div className="row" style={styles.row}>
-                <div className="column" style={styles.div} onMouseOver={()=> handleHome()} onMouseLeave={()=> setVisibility('visible')}>
+            <div className='row' style={styles.row}>
+                <div className='column' id='homeDiv' style={styles.div} onMouseOver={()=> handleHome()} onMouseLeave={()=> setVisibility('visible')}>
                     About Me
                 </div>
-                <div className="column" style={styles.div}>
+                <div className='column' id='projectsDiv' style={styles.div} onClick={()=> chg('homeDiv')}>
                     Projects
                 </div>
             </div>
-            <div className="row" style={styles.row}>
-                <div className="column" style={styles.div}>
+            <div className='row' style={styles.row}>
+                <div className='column' id='codingDiv' style={styles.div}>
                     Coding Skills
                 </div>
-                <div className="column" style={styles.div}>
+                <div className='column' id='educationDiv' style={styles.div}>
                     Education
                 </div>
             </div>
@@ -121,10 +134,10 @@ export default function Profile(props) {
                 {text}
             </div>
             <img alt='profile' src={profilePic} style={styles.avatar}/>
-            <FontAwesomeIcon icon={faHome} style={styles.homeIcon} onMouseOver={()=> handleHome()} onMouseLeave={()=> setVisibility('visible')}/>
-            <FontAwesomeIcon icon={faLaptopCode} style={styles.workIcon} />
-            <FontAwesomeIcon icon={faSchool} style={styles.educationIcon} />
-            <FontAwesomeIcon icon={faBriefcase} style={styles.passionsIcon} />
+            <FontAwesomeIcon icon={faHome} id='home' style={styles.homeIcon} onMouseOver={()=> handleHome()} onMouseLeave={()=> setVisibility('visible')}/>
+            <FontAwesomeIcon icon={faLaptopCode} id='projects' style={styles.workIcon} />
+            <FontAwesomeIcon icon={faSchool} id='coding' style={styles.educationIcon} />
+            <FontAwesomeIcon icon={faBriefcase} id='education' style={styles.passionsIcon} />
         </div>
     );
 }

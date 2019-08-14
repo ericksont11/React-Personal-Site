@@ -7,7 +7,7 @@ import './App.css'
 
 function App() {
   return (
-    <div className="App" style={{margin:0, padding: 0}}>
+    <div className="App" style={{margin:0, padding: 0, overflow: 'hidden'}}>
       <Switch>
         <Route exact path="/" component={Profile}/>
         <Route exact path="/profile" component={Profile}/>
