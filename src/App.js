@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Profile from './pages/profile';
-import Projects from './pages/projects';
+import Projects from './components/aboutme';
 import './App.css'
 
 
